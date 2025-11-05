@@ -1,0 +1,50 @@
+
+class BinaryHeapMax{
+    static int capacity;
+    static int size;
+    static int []arr;
+    BinaryHeapMax(int cap){
+        capacity=cap;
+        size=0;
+        arr=new int[capacity];
+    }
+    static int parent(int i){
+        return (i-1)/2;
+    }
+    static int left(int i)
+    {
+        return 2*i+1;
+    }
+    static int right(int i)
+    {
+        return 2*i+2;
+    }
+    static void insert(int x)
+    {
+        arr[size]=x;
+        int k=size;
+        size++;
+        while(k!=0 && arr[parent(k)]<arr[k])
+        {
+            int temp=arr[parent(k)];
+            arr[parent(k)]=arr[k];
+            arr[k]=temp;
+            k=parent(k);
+        }
+    }
+    static int getMax()
+    {
+        return arr[0];
+    }
+    public static void main(String[] args) {
+        BinaryHeapMax h=new BinaryHeapMax(20);
+        h.insert(14);
+        h.insert(24);
+        h.insert(12);
+        h.insert(11);
+        h.insert(25);
+        h.insert(8);
+        h.insert(35);
+        System.out.println("Max element is"+h.getMax());
+    }
+}
