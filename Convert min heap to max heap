@@ -1,0 +1,33 @@
+// User function Template for Java
+
+class Solution {
+    static void heapify(int []arr,int n,int index)
+    {
+        int largest=index;
+        int left=2*index+1;
+        int right=2*index+2;
+        if(left<n && arr[left]>arr[largest])
+        {
+            largest=left;
+        }
+        if(right<n && arr[right]>arr[largest])
+        {
+            largest=right;
+        }
+        if(largest!=index)
+        {
+            int temp=arr[largest];
+            arr[largest]=arr[index];
+            arr[index]=temp;
+            heapify(arr,n,largest);
+        }
+    }
+    static void convertMinToMaxHeap(int N, int arr[]) {
+        for(int i=N/2;i>=0;i--)
+        {
+            heapify(arr,N,i);
+        }
+        
+    }
+}
+ 
